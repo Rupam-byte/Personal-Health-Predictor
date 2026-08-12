@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "c8e9b4d1-8f2a-4c2b-9e3f-7a5d1b3e4f5a",
+		"name": "Personalized Healthcare Recommendation System API",
+		"description": "Postman Collection for testing all 7 Machine Learning & Artificial Intelligence Recommendation Engine endpoints.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "System Health & Analytics",
+			"item": [
+				{
+					"name": "Root Dashboard Page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": [""]
+						}
+					}
+				},
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/health",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": ["health"]
+						}
+					}
+				},
+				{
+					"name": "Recommendation Models Analytics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/recommend/analytics",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": ["api", "recommend", "analytics"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Authentication & User Management",
+			"item": [
+				{
+					"name": "User Signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"SecurePass123\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/signup",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": ["api", "signup"]
+						}
+					}
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"SecurePass123\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/login",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": ["api", "login"]
+						}
+					}
+				},
+				{
+					"name": "Current User Profile (/api/me)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/me",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": ["api", "me"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Recommendation Engine Endpoints",
+			"item": [
+				{
+					"name": "Content-Based Recommendation (TF-IDF + Cosine)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/recommend/items/0?num=3",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": ["api", "recommend", "items", "0"],
+							"query": [
+								{
+									"key": "num",
+									"value": "3"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Hybrid Recommendation (Content-Based + SVD)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": 1,\n  \"item_id\": 0\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/recommend/hybrid",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": ["api", "recommend", "hybrid"]
+						}
+					}
+				},
+				{
+					"name": "Disease Prediction from Patient Vitals",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"age\": 45,\n  \"blood_pressure\": 130,\n  \"glucose_level\": 110,\n  \"heart_rate\": 78\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/predict/vitals",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": ["api", "predict", "vitals"]
+						}
+					}
+				},
+				{
+					"name": "Medicine Recommendation (Diagnosis & Profile)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"diagnosis\": \"Panic disorder\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/recommend/medicine",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": ["api", "recommend", "medicine"]
+						}
+					}
+				},
+				{
+					"name": "NLP Feedback Sentiment Analysis",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"text\": \"The prescribed medication was very effective and helped relieve my symptoms!\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/recommend/nlp-feedback",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": ["api", "recommend", "nlp-feedback"]
+						}
+					}
+				},
+				{
+					"name": "Knowledge Graph Recommendation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/recommend/graph/Panic disorder",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": ["api", "recommend", "graph", "Panic disorder"]
+						}
+					}
+				},
+				{
+					"name": "Reinforcement Learning Feedback",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"arm\": 1,\n  \"reward\": 1.0\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/recommend/rl-feedback",
+							"protocol": "http",
+							"host": ["127", "0", "0", "1"],
+							"port": "5000",
+							"path": ["api", "recommend", "rl-feedback"]
+						}
+					}
+				}
+			]
+		}
+	]
+}

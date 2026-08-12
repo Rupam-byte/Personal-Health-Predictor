@@ -1,0 +1,62 @@
+### 1. Root Dashboard & Health Check
+GET http://127.0.0.1:5000/
+
+### 2. System Health Status
+GET http://127.0.0.1:5000/health
+
+### 3. Recommendation Models Analytics
+GET http://127.0.0.1:5000/api/recommend/analytics
+
+### 4. Searchable Symptom List
+GET http://127.0.0.1:5000/api/symptoms
+
+### 5. Content-Based Recommendation (TF-IDF + Cosine Similarity)
+GET http://127.0.0.1:5000/api/recommend/items/0?num=3
+
+### 6. Knowledge Graph Connections
+GET http://127.0.0.1:5000/api/recommend/graph/Panic disorder
+
+### 7. Disease Prediction from Patient Vitals (Age, BP, Glucose, HR)
+POST http://127.0.0.1:5000/api/predict/vitals
+Content-Type: application/json
+
+{
+  "age": 45,
+  "blood_pressure": 130,
+  "glucose_level": 110,
+  "heart_rate": 78
+}
+
+### 8. Medicine & Treatment Recommendation
+POST http://127.0.0.1:5000/api/recommend/medicine
+Content-Type: application/json
+
+{
+  "diagnosis": "Panic disorder"
+}
+
+### 9. Hybrid Recommendation (Content-Based + SVD)
+POST http://127.0.0.1:5000/api/recommend/hybrid
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "item_id": 0
+}
+
+### 10. NLP Review Feedback Sentiment Analysis
+POST http://127.0.0.1:5000/api/recommend/nlp-feedback
+Content-Type: application/json
+
+{
+  "text": "The prescribed medication was very effective and relieved my symptoms well!"
+}
+
+### 11. Reinforcement Learning Bandit Reward Feedback
+POST http://127.0.0.1:5000/api/recommend/rl-feedback
+Content-Type: application/json
+
+{
+  "arm": 1,
+  "reward": 1.0
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HealthAI | Find Doctors</title>
+
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="css/contact.css">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+</head>
+
+
+
+<body>
+
+
+<!-- Animated Medical Background -->
+
+<canvas id="dnaCanvas"></canvas>
+
+
+<div class="overlay"></div>
+
+
+<div class="glow glow1"></div>
+
+
+<div class="glow glow2"></div>
+
+
+
+
+
+<!-- HEADER -->
+
+<header>
+
+<nav>
+
+
+<div class="logo">
+
+
+<i class="fa-solid fa-dna"></i>
+
+
+<span>HealthAI</span>
+
+
+</div>
+
+
+
+<a href="index.html" class="back-btn">
+
+
+<i class="fa-solid fa-arrow-left"></i>
+
+
+Back
+
+
+</a>
+
+
+</nav>
+
+</header>
+
+
+
+
+
+
+<!-- CONTACT FINDER -->
+
+
+<section class="contact-page">
+
+
+<div class="glass-card contact-card">
+
+
+
+<h1>
+
+
+<i class="fa-solid fa-user-doctor"></i>
+
+
+Find Healthcare
+
+
+</h1>
+
+
+
+<p class="contact-intro">
+
+
+Search doctors, specialists, clinics and hospitals near your location using HealthAI.
+
+
+</p>
+
+
+
+
+
+
+<!-- SEARCH -->
+
+
+<div class="search-box">
+
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+
+
+<input
+
+type="text"
+
+id="doctorSearch"
+
+placeholder="Search doctor, disease, specialist...">
+
+
+</div>
+
+
+
+
+
+
+
+<!-- LOCATION -->
+
+
+<button
+
+id="locationBtn"
+
+class="location-btn">
+
+
+<i class="fa-solid fa-location-dot"></i>
+
+
+Enable Location
+
+
+</button>
+
+
+
+
+<p id="locationText">
+
+
+Location not detected
+
+
+</p>
+
+
+
+
+
+
+
+<!-- RESULTS -->
+
+
+<h2>
+
+
+<i class="fa-solid fa-hospital"></i>
+
+
+Nearby Doctors & Clinics
+
+
+</h2>
+
+
+
+
+<div
+
+id="results"
+
+class="results-grid">
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</section>
+
+<script src="js/dna.js"></script>
+
+
+<script src="js/contact.js"></script>
+
+
+</body>
+
+</html>

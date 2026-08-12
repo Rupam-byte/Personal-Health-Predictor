@@ -1,0 +1,13 @@
+flask
+flask-cors
+flask-sqlalchemy
+flask-login
+flask-limiter
+python-dotenv
+joblib
+pandas
+numpy
+scikit-learn==1.6.1
+gunicorn
+xgboost
+psycopg2-binary

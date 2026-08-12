@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About HealthAI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+
+        body{
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:flex-start;
+
+            min-height:100vh;
+
+            padding:140px 20px 60px;
+
+            overflow-x:hidden;
+
+            position:relative;
+
+        }
+
+        .about-card{
+
+            position:relative;
+
+            z-index:10;
+
+            width:100%;
+
+            max-width:850px;
+
+            padding:45px;
+
+            text-align:left;
+
+        }
+
+        .about-card h1{
+
+            font-size:42px;
+
+            margin-bottom:25px;
+
+            color:#ffffff;
+
+        }
+
+        .about-card h1 i{
+
+            color:#00d4ff;
+
+            margin-right:12px;
+
+        }
+
+        .about-card h2{
+
+            margin-top:35px;
+
+            margin-bottom:15px;
+
+            font-size:30px;
+
+            color:#00d4ff;
+
+        }
+
+        .about-card p{
+
+            font-size:18px;
+
+            line-height:1.9;
+
+            color:#d6e1ef;
+
+        }
+
+        .back-home{
+
+            display:inline-block;
+
+            margin-top:35px;
+
+            padding:16px 40px;
+
+            border-radius:50px;
+
+            background:linear-gradient(135deg,#00d4ff,#0066ff);
+
+            color:#fff;
+
+            font-weight:600;
+
+            text-decoration:none;
+
+            transition:.3s;
+
+        }
+
+        .back-home:hover{
+
+            transform:translateY(-4px);
+
+            box-shadow:0 0 30px rgba(0,212,255,.6);
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+
+    <canvas id="dnaCanvas"></canvas>
+
+    <div class="overlay"></div>
+
+    <div class="glow glow1"></div>
+
+    <div class="glow glow2"></div>
+
+    <!-- About Card -->
+
+    <div class="glass-card about-card">
+
+        <h1>
+
+            <i class="fa-solid fa-dna"></i>
+
+            About HealthAI
+
+        </h1>
+
+        <p>
+
+            HealthAI is an AI-powered health prediction platform designed to help users understand possible health risks through intelligent symptom analysis. Our system combines modern artificial intelligence with healthcare knowledge to provide fast, informative, and easy-to-understand health assessments.
+
+        </p>
+
+        <h2>
+
+            How It Works
+
+        </h2>
+
+        <p>
+
+            1. Enter your health symptoms.<br><br>
+
+            2. Our AI analyzes the symptoms using advanced medical prediction models.<br><br>
+
+            3. The system predicts possible diseases with confidence scores.<br><br>
+
+            4. A detailed health report is generated instantly to help users understand potential health conditions.
+
+        </p>
+
+        <h2>
+
+            Our Mission
+
+        </h2>
+
+        <p>
+
+            Our mission is to make healthcare guidance faster, smarter, and accessible to everyone. HealthAI combines Artificial Intelligence with modern healthcare technology to provide intelligent health insights and encourage early medical awareness.
+
+        </p>
+
+        <a href="index.html" class="back-home">
+
+            <i class="fa-solid fa-house"></i>
+
+            &nbsp; Back Home
+
+        </a>
+
+    </div>
+
+    <script src="js/dna.js"></script>
+
+</body>
+
+</html>

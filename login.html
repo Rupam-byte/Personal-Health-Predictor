@@ -1,0 +1,191 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HealthAI | Login</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="auth.css"
+    >
+
+</head>
+
+<body>
+
+    <canvas id="dnaCanvas"></canvas>
+
+    <div class="overlay"></div>
+
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+
+                <i class="fa-solid fa-dna"></i>
+
+                <span>HealthAI</span>
+
+            </div>
+
+            <a
+                href="index.html"
+                class="back-btn"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back
+
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <section class="logout-section">
+
+        <div class="logout-card">
+
+            <h1>Welcome Back</h1>
+
+            <p>
+                Login to continue your AI Health Journey
+            </p>
+
+
+            <form id="loginForm" novalidate>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Email Address"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <i
+                        class="fa-solid fa-eye togglePassword"
+                        id="togglePassword"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Show password"
+                    ></i>
+
+                </div>
+
+
+                <div class="options">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            id="remember"
+                            name="remember"
+                        >
+
+                        Remember Me
+
+                    </label>
+
+
+                    <a href="forgot.html">
+                        Forgot Password?
+                    </a>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="loginButton"
+                >
+                    Login
+                </button>
+
+
+                <div class="divider">
+                    OR
+                </div>
+
+
+                <a
+                    href="signup.html"
+                    class="signup-btn"
+                >
+                    Create New Account
+                </a>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <script src="js/dna.js"></script>
+
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>
+```

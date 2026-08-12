@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+HealthAI | Dashboard
+</title>
+
+
+<!-- MAIN CSS -->
+
+<link
+rel="stylesheet"
+href="style.css"
+>
+
+
+<!-- DASHBOARD CSS -->
+
+<link
+rel="stylesheet"
+href="dashboard.css"
+>
+
+
+<!-- FONT -->
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+rel="stylesheet"
+>
+
+
+<!-- ICONS -->
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+>
+<!-- CHART JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+
+
+<body>
+
+
+<!-- DNA BACKGROUND -->
+
+<canvas id="dnaCanvas"></canvas>
+
+
+
+<!-- =====================================================
+NAVBAR
+===================================================== -->
+
+
+<header class="main-navbar">
+
+
+<div class="brand">
+
+
+<span class="brand-icon">
+✦
+</span>
+
+
+<span>
+HealthAI
+</span>
+
+
+</div>
+
+
+
+<nav>
+
+
+<ul>
+
+
+<li>
+<a href="index.html">
+Home
+</a>
+</li>
+
+
+<li>
+<a 
+href="dashboard.html"
+class="active"
+>
+Dashboard
+</a>
+</li>
+
+
+<li>
+<a href="prediction.html">
+Prediction
+</a>
+</li>
+
+
+<li>
+<a href="contact.html">
+Contact
+</a>
+</li>
+
+
+</ul>
+
+
+</nav>
+
+
+
+<div class="user-area">
+
+
+<span
+id="navUsername"
+class="username"
+>
+User
+</span>
+
+
+
+<button
+id="logoutBtn"
+class="logout-btn"
+>
+
+Logout
+
+</button>
+
+
+</div>
+
+
+</header>
+
+
+
+
+
+<!-- =====================================================
+MAIN DASHBOARD
+===================================================== -->
+
+
+<main class="dashboard-container">
+
+
+
+
+
+<!-- HERO -->
+
+<section class="dashboard-header">
+
+
+<div>
+
+
+<p class="small-title">
+AI HEALTH DASHBOARD
+</p>
+
+
+
+<h1>
+Your Personalized Health Overview
+</h1>
+
+
+
+<p class="subtitle">
+
+Monitor your previous AI assessments,
+prediction history and health insights.
+
+</p>
+
+
+</div>
+
+
+
+<div class="health-score-card">
+
+
+<div class="score-circle">
+
+
+<span id="healthScore">
+0%
+</span>
+
+
+<small>
+Health Score
+</small>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- =====================================================
+STAT CARDS
+===================================================== -->
+
+
+<section class="stats-grid">
+
+
+<div class="stat-card">
+
+
+<i class="fa-solid fa-file-medical"></i>
+
+
+<div>
+
+<h3 id="totalPredictions">
+0
+</h3>
+
+
+<p>
+Total Predictions
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="stat-card">
+
+
+<i class="fa-solid fa-virus"></i>
+
+
+<div>
+
+<h3 id="lastDisease">
+-
+</h3>
+
+
+<p>
+Latest Disease
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="stat-card">
+
+
+<i class="fa-solid fa-chart-line"></i>
+
+
+<div>
+
+<h3 id="averageConfidence">
+0%
+</h3>
+
+
+<p>
+Average Confidence
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- =====================================================
+PREDICTION HISTORY TABLE
+===================================================== -->
+
+
+<section class="history-section">
+
+
+
+<div class="section-heading">
+
+
+<h2>
+Prediction History
+</h2>
+
+
+<p>
+Previous AI diagnosis reports
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="history-table-wrapper">
+
+
+
+<table>
+
+
+
+<thead>
+
+
+<tr>
+
+
+<th>
+Date
+</th>
+
+
+<th>
+Disease
+</th>
+
+
+<th>
+Confidence
+</th>
+
+
+<th>
+Risk
+</th>
+
+
+<th>
+Symptoms
+</th>
+
+
+upda
+
+</tr>
+
+
+</thead>
+
+
+
+
+
+<tbody id="historyTableBody">
+
+
+<!-- JS DATA LOAD HERE -->
+
+
+<tr>
+
+
+<td colspan="6">
+
+No prediction history found
+
+</td>
+
+
+</tr>
+
+
+
+</tbody>
+
+
+
+
+</table>
+
+
+
+</div>
+
+
+
+</section>
+
+
+<!-- =====================================================
+     HEALTH CONDITION LINE GRAPH
+===================================================== -->
+
+<section class="health-chart-section">
+
+
+    <div class="section-heading">
+
+        <h2>
+            Health Condition Trend
+        </h2>
+
+        <p>
+            AI confidence analysis over your previous diagnosis history
+        </p>
+
+    </div>
+
+
+
+    <div class="chart-card">
+
+
+        <canvas id="healthTrendChart"></canvas>
+
+
+    </div>
+
+
+</section>
+
+
+
+
+<!-- =====================================================
+AI SUMMARY
+===================================================== -->
+
+
+<section class="ai-summary">
+
+
+<div>
+
+
+<p class="small-title">
+HEALTH AI INSIGHT
+</p>
+
+
+<h2>
+Your Recent Health Analysis
+</h2>
+
+
+<p id="aiSummaryText">
+
+Your prediction history will appear here after completing diagnosis.
+
+</p>
+
+
+</div>
+
+
+
+<a href="diagnosis.html"
+class="primary-btn"
+>
+
+Start New Diagnosis
+
+</a>
+
+
+</section>
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+<!-- SCRIPTS -->
+
+
+<script src="js/dna.js"></script>
+
+
+<script src="dashboard.js"></script>
+
+
+
+</body>
+
+</html>

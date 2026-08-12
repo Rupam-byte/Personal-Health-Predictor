@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HealthAI - Reset Password</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./auth.css"
+    >
+</head>
+
+
+<body>
+
+    <canvas id="dnaCanvas"></canvas>
+
+    <div class="overlay"></div>
+
+    <div class="glow glow1"></div>
+
+    <div class="glow glow2"></div>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+
+                <i class="fa-solid fa-dna"></i>
+
+                <span>
+                    HealthAI
+                </span>
+
+            </div>
+
+
+            <a
+                href="./login.html"
+                class="back-btn"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back
+
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================================================
+         RESET PASSWORD
+    ========================================================== -->
+
+    <section class="logout-section">
+
+        <div class="logout-card">
+
+            <h1>
+                Reset Password
+            </h1>
+
+            <p>
+                Enter your registered email and create a new password.
+            </p>
+
+
+            <!--
+                IMPORTANT:
+                No action attribute.
+                No method attribute.
+                JavaScript handles submission.
+            -->
+
+            <form
+                id="forgotForm"
+                novalidate
+            >
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Email Address"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="newPassword"
+                        name="newPassword"
+                        placeholder="New Password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    id="resetPasswordButton"
+                >
+                    Reset Password
+                </button>
+
+
+                <div class="divider">
+                    OR
+                </div>
+
+
+                <a
+                    href="./login.html"
+                    class="signup-btn"
+                >
+                    Back to Login
+                </a>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- DNA animation -->
+
+    <script src="./js/dna.js"></script>
+
+
+    <!-- =========================================================
+         FORGOT PASSWORD
+         INLINE TEMPORARILY TO ELIMINATE JS PATH/CACHE PROBLEM
+    ========================================================== -->
+
+    <script>
+
+    "use strict";
+
+    console.log(
+        "[FORGOT] INLINE SCRIPT LOADED"
+    );
+
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            console.log(
+                "[FORGOT] DOM READY"
+            );
+
+
+            const form =
+                document.getElementById(
+                    "forgotForm"
+                );
+
+            const emailInput =
+                document.getElementById(
+                    "email"
+                );
+
+            const passwordInput =
+                document.getElementById(
+                    "newPassword"
+                );
+
+            const button =
+                document.getElementById(
+                    "resetPasswordButton"
+                );
+
+
+            if (!form) {
+
+                console.error(
+                    "[FORGOT] forgotForm NOT FOUND"
+                );
+
+                return;
+            }
+
+
+            console.log(
+                "[FORGOT] FORM FOUND"
+            );
+
+
+            form.addEventListener(
+                "submit",
+                async function (event) {
+
+                    /*
+                     * THIS IS THE CRITICAL LINE.
+                     *
+                     * It prevents the browser from performing
+                     * its normal HTML form submission.
+                     */
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    console.log(
+                        "[FORGOT] SUBMIT INTERCEPTED"
+                    );
+
+
+                    const email =
+                        emailInput.value
+                            .trim()
+                            .toLowerCase();
+
+
+                    const newPassword =
+                        passwordInput.value;
+
+
+                    console.log(
+                        "[FORGOT] Email:",
+                        email
+                    );
+
+
+                    // ------------------------------------------------
+                    // VALIDATION
+                    // ------------------------------------------------
+
+                    if (!email) {
+
+                        alert(
+                            "Please enter your registered email."
+                        );
+
+                        emailInput.focus();
+
+                        return;
+                    }
+
+
+                    if (!newPassword) {
+
+                        alert(
+                            "Please enter a new password."
+                        );
+
+                        passwordInput.focus();
+
+                        return;
+                    }
+
+
+                    if (newPassword.length < 8) {
+
+                        alert(
+                            "Password must be at least 8 characters."
+                        );
+
+                        passwordInput.focus();
+
+                        return;
+                    }
+
+
+                    if (!/[A-Z]/.test(newPassword)) {
+
+                        alert(
+                            "Password must contain an uppercase letter."
+                        );
+
+                        passwordInput.focus();
+
+                        return;
+                    }
+
+
+                    if (!/[a-z]/.test(newPassword)) {
+
+                        alert(
+                            "Password must contain a lowercase letter."
+                        );
+
+                        passwordInput.focus();
+
+                        return;
+                    }
+
+
+                    if (!/[0-9]/.test(newPassword)) {
+
+                        alert(
+                            "Password must contain a number."
+                        );
+
+                        passwordInput.focus();
+
+                        return;
+                    }
+
+
+                    // ------------------------------------------------
+                    // BUTTON
+                    // ------------------------------------------------
+
+                    button.disabled = true;
+
+                    button.textContent =
+                        "Resetting...";
+
+
+                    try {
+
+                        console.log(
+                            "[FORGOT] ABOUT TO SEND FETCH"
+                        );
+
+
+                        const payload = {
+                            email: email,
+                            newPassword: newPassword
+                        };
+
+
+                        console.log(
+                            "[FORGOT] Payload:",
+                            payload
+                        );
+
+
+                        // ------------------------------------------------
+                        // JSON FETCH
+                        // ------------------------------------------------
+
+                        const response =
+                            await fetch(
+                                "http://127.0.0.1:5000/api/forgot",
+                                {
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json",
+
+                                        "Accept":
+                                            "application/json"
+                                    },
+
+                                    credentials:
+                                        "include",
+
+                                    body:
+                                        JSON.stringify(
+                                            payload
+                                        )
+                                }
+                            );
+
+
+                        console.log(
+                            "[FORGOT] RESPONSE STATUS:",
+                            response.status
+                        );
+
+
+                        const result =
+                            await response.json();
+
+
+                        console.log(
+                            "[FORGOT] RESPONSE:",
+                            result
+                        );
+
+
+                        // ------------------------------------------------
+                        // SUCCESS
+                        // ------------------------------------------------
+
+                        if (
+                            response.ok &&
+                            result.success === true
+                        ) {
+
+                            console.log(
+                                "[FORGOT] RESET SUCCESS"
+                            );
+
+
+                            alert(
+                                "Password reset successfully. Please login with your new password."
+                            );
+
+
+                            window.location.href =
+                                "./login.html";
+
+
+                            return;
+                        }
+
+
+                        // ------------------------------------------------
+                        // ERROR
+                        // ------------------------------------------------
+
+                        alert(
+                            result.error ||
+                            "Unable to reset password."
+                        );
+
+
+                    } catch (error) {
+
+                        console.error(
+                            "[FORGOT] FETCH ERROR:",
+                            error
+                        );
+
+
+                        alert(
+                            "Unable to connect to HealthAI backend."
+                        );
+
+
+                    } finally {
+
+                        button.disabled =
+                            false;
+
+                        button.textContent =
+                            "Reset Password";
+                    }
+
+                }
+            );
+
+        }
+    );
+
+    </script>
+
+</body>
+
+</html>
+
+</html>

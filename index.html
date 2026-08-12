@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HealthAI - AI Disease Prediction</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<style>
+
+nav ul li a.active{
+    color:#00d4ff;
+    text-shadow:0 0 15px #00d4ff;
+}
+
+
+.user-box{
+
+    color:#00d4ff;
+    font-weight:600;
+    margin-right:20px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<canvas id="dnaCanvas"></canvas>
+
+<div class="overlay"></div>
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+
+
+<script>
+
+const currentUser =
+localStorage.getItem("currentUser");
+
+
+if(!currentUser){
+
+window.location.href="login.html";
+
+}
+
+</script>
+
+
+
+
+<header>
+
+<nav>
+
+
+<div class="logo">
+
+<i class="fa-solid fa-dna"></i>
+
+<span>
+HealthAI
+</span>
+
+</div>
+
+
+
+
+<ul>
+
+
+<li>
+<a href="home.html" class="nav-link active">
+Home
+</a>
+</li>
+
+
+<li>
+<a href="dashboard.html" class="nav-link">
+Dashboard
+</a>
+</li>
+
+
+
+<li>
+<a href="prediction.html" class="nav-link">
+Prediction
+</a>
+</li>
+
+
+
+<li>
+<a href="contact.html" class="nav-link">
+Contact
+</a>
+</li>
+
+
+</ul>
+
+
+
+
+<div>
+
+
+<span 
+class="user-box"
+id="username">
+</span>
+
+
+<button 
+class="logout-btn"
+id="logoutBtn">
+
+Logout
+
+</button>
+
+
+</div>
+
+
+
+</nav>
+
+</header>
+
+
+
+
+
+
+<section class="hero">
+
+
+<div class="left">
+
+
+<h1>
+
+Detect Disease
+
+<span>
+Before It Gets Serious
+</span>
+
+</h1>
+
+
+
+<p>
+
+Analyze symptoms using advanced Artificial Intelligence,
+receive instant medical insights,
+and monitor your health with next-generation predictive technology.
+
+</p>
+
+
+
+
+<div class="hero-buttons">
+
+
+<button 
+class="primary"
+id="startDiagnosisBtn">
+
+Start Diagnosis
+
+</button>
+
+
+
+<button
+class="secondary"
+id="learnMoreBtn">
+
+Learn More
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<div class="stats">
+
+
+<div>
+
+<h2>
+98%
+</h2>
+
+<p>
+Accuracy
+</p>
+
+</div>
+
+
+
+<div>
+
+<h2>
+15K+
+</h2>
+
+<p>
+Patients
+</p>
+
+</div>
+
+
+
+
+<div>
+
+<h2>
+24/7
+</h2>
+
+<p>
+Monitoring
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="right">
+
+
+<div class="glass-card">
+
+
+
+<div class="card-top">
+
+
+<h2>
+AI Health Prediction
+</h2>
+
+
+<span>
+● Live
+</span>
+
+
+</div>
+
+
+
+
+<div class="chips" id="symptomChips">
+
+</div>
+
+
+
+
+
+<div class="circle">
+
+
+<div class="inner" id="cardConfidence">
+
+0%
+
+</div>
+
+
+</div>
+
+
+
+
+<h1 
+class="disease"
+id="cardDisease">
+
+Loading...
+
+</h1>
+
+
+
+
+
+<p 
+class="prediction-text"
+id="cardDescription">
+
+Waiting for latest diagnosis...
+
+</p>
+
+
+
+
+
+<div class="ecg">
+
+
+<svg viewBox="0 0 800 100">
+
+
+<polyline
+
+fill="none"
+
+stroke="#00d5ff"
+
+stroke-width="4"
+
+points="
+0,50
+40,50
+60,20
+80,80
+100,15
+120,50
+180,50
+210,40
+230,85
+260,15
+290,50
+340,50
+380,45
+420,75
+450,20
+480,50
+800,50
+"
+
+/>
+
+
+</svg>
+
+
+</div>
+
+
+
+
+
+<button
+
+class="report-btn"
+
+id="viewReportBtn">
+
+View Full Report
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<div class="dna-icons">
+
+
+<i class="fa-solid fa-dna"></i>
+<i class="fa-solid fa-dna"></i>
+<i class="fa-solid fa-dna"></i>
+<i class="fa-solid fa-dna"></i>
+<i class="fa-solid fa-dna"></i>
+
+
+</div>
+
+
+
+
+
+<script src="js/dna.js"></script>
+
+<script src="script.js"></script>
+
+
+
+<script>
+
+
+
+const user = JSON.parse(
+localStorage.getItem("currentUser")
+);
+
+
+
+if(user){
+
+
+document.getElementById("username").innerText =
+
+"Welcome, " + (user.name || "User");
+
+
+}
+
+
+
+
+
+
+document
+.getElementById("logoutBtn")
+.addEventListener("click",()=>{
+
+
+localStorage.removeItem("currentUser");
+
+window.location.href="login.html";
+
+
+});
+
+
+
+
+
+
+document
+.getElementById("startDiagnosisBtn")
+.addEventListener("click",()=>{
+
+
+window.location.href="diagnosis.html";
+
+
+});
+
+
+
+
+
+
+document
+.getElementById("learnMoreBtn")
+.addEventListener("click",()=>{
+
+
+window.location.href="about.html";
+
+
+});
+
+
+
+
+
+
+
+document
+.getElementById("viewReportBtn")
+.addEventListener("click",()=>{
+
+
+window.location.href="prediction.html";
+
+
+});
+
+
+
+
+
+
+async function loadPredictionCard(){
+
+    try{
+
+
+        const response = await fetch(
+            "http://127.0.0.1:5000/api/history",
+            {
+                method:"GET",
+                credentials:"include"
+            }
+        );
+
+
+
+        const data = await response.json();
+
+
+
+        if(!data.success || !data.history || data.history.length===0){
+
+            document.getElementById("cardDisease").innerText =
+            "No Diagnosis";
+
+            document.getElementById("cardConfidence").innerText =
+            "0%";
+
+            document.getElementById("cardDescription").innerText =
+            "Complete a diagnosis to generate AI prediction.";
+
+            return;
+
+        }
+
+
+
+
+
+        const latest = data.history[0];
+
+
+
+
+
+        let disease =
+        latest.predicted_disease ||
+        latest.disease ||
+        "Unknown";
+
+
+
+
+
+        let confidence =
+        Number(
+            latest.confidence || 0
+        );
+
+
+
+
+
+
+        let symptoms =
+        latest.symptoms_input || [];
+
+
+
+
+        if(typeof symptoms === "string"){
+
+            symptoms = symptoms.split(",");
+
+        }
+
+
+
+
+
+        document
+        .getElementById("cardDisease")
+        .innerText = disease;
+
+
+
+
+        document
+        .getElementById("cardConfidence")
+        .innerText = confidence + "%";
+
+
+
+
+
+
+        document
+        .getElementById("cardDescription")
+        .innerText =
+
+        "AI detected " 
+        +
+        disease
+        +
+        " with "
+        +
+        confidence
+        +
+        "% confidence based on your symptoms.";
+
+
+
+
+
+
+
+        const chipBox =
+        document.getElementById("symptomChips");
+
+
+
+        chipBox.innerHTML="";
+
+
+
+
+        symptoms
+        .slice(0,5)
+        .forEach(symptom=>{
+
+
+            let chip =
+            document.createElement("span");
+
+
+            chip.innerText =
+            symptom
+            .replaceAll("_"," ");
+
+
+
+            chipBox.appendChild(chip);
+
+
+        });
+
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(
+            "Prediction card error:",
+            error
+        );
+
+
+    }
+
+
+}
+
+
+
+loadPredictionCard();
+
+
+
+
+
+loadPredictionCard();
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

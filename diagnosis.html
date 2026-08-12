@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HealthAI - Diagnosis</title>
+
+    <link rel="stylesheet" href="diagnosis.css">
+</head>
+
+<body>
+
+    <canvas id="dnaCanvas" aria-hidden="true"></canvas>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+    <header class="site-header">
+
+        <a href="index.html" class="brand">
+            <span class="brand-icon">✦</span>
+            <span>HealthAI</span>
+        </a>
+
+        <nav class="navigation">
+
+            <a href="index.html">Home</a>
+
+            <a href="dashboard.html">Dashboard</a>
+
+            <a href="prediction.html">Prediction</a>
+
+            <a href="diagnosis.html" class="active">
+                Diagnosis
+            </a>
+
+            <a href="contact.html">Contact</a>
+
+            <button
+                type="button"
+                class="logout-btn"
+                id="logoutBtn">
+                Logout
+            </button>
+
+        </nav>
+
+        <button
+            type="button"
+            class="mobile-menu"
+            id="mobileMenu"
+            aria-label="Open menu">
+            ☰
+        </button>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+    <main class="diagnosis-container">
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+        <section class="diagnosis-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    AI HEALTH ASSESSMENT
+                </span>
+
+                <h1>
+                    Start Your
+                    <span>Diagnosis</span>
+                </h1>
+
+                <p>
+                    Select the symptoms you are experiencing and let
+                    HealthAI analyze them using your connected medical
+                    prediction system.
+                </p>
+
+            </div>
+
+            <div class="user-pill">
+
+                <span class="online-dot"></span>
+
+                <span id="accountName">
+                    Loading...
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DIAGNOSIS CARD
+        ====================================================== -->
+        <section class="diagnosis-card">
+
+            <!-- CARD HEADER -->
+            <div class="card-header">
+
+                <div>
+
+                    <span class="section-label">
+                        STEP 01
+                    </span>
+
+                    <h2>
+                        Select Your Symptoms
+                    </h2>
+
+                    <p>
+                        Search for symptoms from your backend dataset.
+                    </p>
+
+                </div>
+
+                <div class="selected-counter">
+
+                    <strong id="selectedCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Selected
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SEARCH
+            ================================================== -->
+            <div class="search-wrapper">
+
+                <span class="search-icon">
+                    ⌕
+                </span>
+
+                <input
+                    type="search"
+                    id="symptomSearch"
+                    placeholder="Search symptoms..."
+                    autocomplete="off"
+                    aria-label="Search symptoms">
+
+                <button
+                    type="button"
+                    id="clearSearch"
+                    class="clear-search"
+                    aria-label="Clear search">
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 SEARCH RESULTS
+            ================================================== -->
+            <div
+                id="searchResults"
+                class="search-results hidden">
+            </div>
+
+
+            <!-- =================================================
+                 SELECTED SYMPTOMS
+            ================================================== -->
+            <div class="selected-section">
+
+                <div class="section-title-row">
+
+                    <h3>
+                        Selected Symptoms
+                    </h3>
+
+                    <button
+                        type="button"
+                        id="clearSymptoms"
+                        class="clear-all">
+                        Clear all
+                    </button>
+
+                </div>
+
+                <div
+                    id="selectedSymptoms"
+                    class="selected-symptoms">
+
+                    <div class="empty-selection">
+
+                        <span class="empty-symbol">
+                            +
+                        </span>
+
+                        <p>
+                            No symptoms selected yet.
+                        </p>
+
+                        <small>
+                            Use the search box above to find symptoms.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DATASET STATUS
+            ================================================== -->
+            <div
+                id="datasetStatus"
+                class="dataset-status">
+
+                <span class="status-indicator"></span>
+
+                <span id="datasetStatusText">
+                    Connecting to diagnosis system...
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 ANALYSIS
+            ================================================== -->
+            <div class="analysis-area">
+
+                <div class="analysis-info">
+
+                    <span class="analysis-icon">
+                        ✦
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Ready for AI Analysis?
+                        </h3>
+
+                        <p>
+                            Select at least one symptom before starting
+                            the prediction.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="analyzeBtn"
+                    class="analyze-btn"
+                    disabled>
+
+                    <span class="analyze-icon">
+                        ✦
+                    </span>
+
+                    <span>
+                        Analyze Symptoms
+                    </span>
+
+                    <span class="arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             LOADING
+        ====================================================== -->
+        <section
+            id="analysisLoading"
+            class="status-card hidden">
+
+            <div class="spinner"></div>
+
+            <div>
+
+                <h2>
+                    Analyzing Your Symptoms
+                </h2>
+
+                <p>
+                    HealthAI is processing your selected symptoms...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ERROR
+        ====================================================== -->
+        <section
+            id="errorBox"
+            class="error-card hidden">
+
+            <div class="error-icon">
+                !
+            </div>
+
+            <div>
+
+                <h3>
+                    Analysis Failed
+                </h3>
+
+                <p id="errorMessage">
+                    Unable to analyze the selected symptoms.
+                </p>
+
+                <button
+                    type="button"
+                    id="retryBtn"
+                    class="retry-btn">
+                    Try Again
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             INFORMATION
+        ====================================================== -->
+        <section class="information-grid">
+
+            <article class="info-card">
+
+                <span class="info-number">
+                    01
+                </span>
+
+                <h3>
+                    Select Symptoms
+                </h3>
+
+                <p>
+                    Search and choose symptoms that match your current
+                    condition.
+                </p>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <span class="info-number">
+                    02
+                </span>
+
+                <h3>
+                    AI Analysis
+                </h3>
+
+                <p>
+                    Your selected symptoms are sent to the configured
+                    prediction system.
+                </p>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <span class="info-number">
+                    03
+                </span>
+
+                <h3>
+                    View Report
+                </h3>
+
+                <p>
+                    The prediction result is saved and displayed on
+                    your Prediction page.
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- =====================================================
+             WARNING
+        ====================================================== -->
+        <div class="medical-warning">
+
+            <strong>
+                Medical Information
+            </strong>
+
+            <p>
+                HealthAI provides informational predictions only.
+                The result should not replace examination, diagnosis,
+                or treatment from a qualified healthcare professional.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         TOAST
+    ========================================================== -->
+    <div
+        id="toast"
+        class="toast"
+        role="status"
+        aria-live="polite">
+    </div>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+    <script src="diagnosis.js"></script>
+    <script src="js/dna.js"></script>
+
+</body>
+</html>

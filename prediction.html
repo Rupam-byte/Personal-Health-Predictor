@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HealthAI - Prediction Report</title>
+
+    <link rel="stylesheet" href="prediction.css">
+</head>
+
+<body>
+
+    <!-- DNA BACKGROUND -->
+    <canvas id="dnaCanvas" aria-hidden="true"></canvas>
+    <div class="page-glow"></div>
+
+
+    <!-- =========================================================
+         HEADER / NAVIGATION
+    ========================================================== -->
+
+    <header class="site-header">
+
+        <!-- HOME / LOGO -->
+        <a class="brand" href="index.html" aria-label="HealthAI Home">
+            <span class="brand-mark">✦</span>
+            <span>HealthAI</span>
+        </a>
+
+
+        <nav class="glass-nav" id="mainNav" aria-label="Main navigation">
+
+            <!-- HOME -->
+            <a href="index.html" class="nav-link">
+                Home
+            </a>
+
+            <!-- DASHBOARD -->
+            <a href="dashboard.html" class="nav-link">
+                Dashboard
+            </a>
+
+            <!-- PREDICTION -->
+            <a href="prediction.html" class="nav-link active">
+                Prediction
+            </a>
+
+            <!-- CONTACT -->
+            <a href="contact.html" class="nav-link">
+                Contact
+            </a>
+
+            <!-- LOGOUT -->
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+                type="button">
+                Logout
+            </button>
+
+        </nav>
+
+
+        <!-- MOBILE MENU -->
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false">
+            ☰
+        </button>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         MAIN PAGE
+    ========================================================== -->
+
+    <main class="container report-page">
+
+
+        <!-- =====================================================
+             PAGE HEADER
+        ====================================================== -->
+
+        <section class="hero-row">
+
+            <div>
+
+                <p class="eyebrow">
+                    AI HEALTH ASSESSMENT
+                </p>
+
+                <h1>
+                    Your Prediction Report
+                </h1>
+
+                <p class="hero-copy">
+                    Review your latest AI-generated health assessment
+                    or start a new diagnosis.
+                </p>
+
+            </div>
+
+
+            <!-- ACCOUNT -->
+            <div class="account-pill">
+
+                <span class="status-dot"></span>
+
+                <span id="accountName">
+                    Loading...
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             IMPORTANT START DIAGNOSIS BUTTON
+        ====================================================== -->
+
+        <div
+            class="glass-card"
+            style="
+                margin-bottom: 28px;
+                padding: 24px 30px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 25px;
+                flex-wrap: wrap;
+                border: 1px solid rgba(0, 210, 255, 0.30);
+                box-shadow:
+                    0 15px 50px rgba(0, 170, 255, 0.12),
+                    inset 0 1px 0 rgba(255,255,255,0.08);
+            "
+        >
+
+            <div>
+
+                <span
+                    class="section-label"
+                    style="
+                        display:block;
+                        margin-bottom:8px;
+                    "
+                >
+                    READY FOR A NEW ASSESSMENT?
+                </span>
+
+                <h2
+                    style="
+                        margin-bottom:7px;
+                        font-size:24px;
+                    "
+                >
+                    Start a New AI Diagnosis
+                </h2>
+
+                <p
+                    style="
+                        color:rgba(255,255,255,0.62);
+                        line-height:1.6;
+                    "
+                >
+                    Select your symptoms and let HealthAI analyze
+                    them using your connected prediction system.
+                </p>
+
+            </div>
+
+
+            <!-- MAIN IMPORTANT BUTTON -->
+            <button
+                id="topStartDiagnosisBtn"
+                type="button"
+                class="primary-btn"
+                style="
+                    min-width:220px;
+                    padding:16px 30px;
+                    font-size:16px;
+                    font-weight:700;
+                    letter-spacing:0.3px;
+                    box-shadow:
+                        0 12px 35px rgba(0, 200, 255, 0.38),
+                        0 0 25px rgba(0, 200, 255, 0.12);
+                "
+            >
+                ✦ Start Diagnosis
+            </button>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             LOADING STATE
+        ====================================================== -->
+
+        <div
+            id="loadingState"
+            class="glass-card state-card"
+        >
+
+            <div class="loader"></div>
+
+            <div>
+
+                <h2>
+                    Loading your report
+                </h2>
+
+                <p>
+                    Retrieving the latest diagnosis for your account...
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             EMPTY STATE
+        ====================================================== -->
+
+        <div
+            id="emptyState"
+            class="glass-card state-card hidden"
+        >
+
+            <div class="empty-icon">
+                +
+            </div>
+
+
+            <div class="state-content">
+
+                <h2>
+                    No Prediction Yet
+                </h2>
+
+                <p>
+                    You have not completed a diagnosis yet.
+                    Start a diagnosis to generate your personalized
+                    HealthAI report.
+                </p>
+
+
+                <!-- MAIN START BUTTON -->
+                <button
+                    class="primary-btn"
+                    id="startDiagnosisBtn"
+                    type="button"
+                    style="
+                        margin-top:8px;
+                        padding:16px 32px;
+                        font-size:16px;
+                        font-weight:700;
+                        box-shadow:
+                            0 12px 35px rgba(0,200,255,0.40);
+                    "
+                >
+                    ✦ Start Diagnosis
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             REPORT CONTENT
+        ====================================================== -->
+
+        <section
+            id="reportContent"
+            class="hidden"
+        >
+
+
+            <!-- =================================================
+                 TOP REPORT
+            ================================================== -->
+
+            <div class="report-grid">
+
+
+                <!-- DIAGNOSIS CARD -->
+
+                <article class="glass-card diagnosis-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <span class="section-label">
+                                LATEST ASSESSMENT
+                            </span>
+
+                            <h2 id="diseaseName">
+                                —
+                            </h2>
+
+                        </div>
+
+
+                        <span
+                            id="riskBadge"
+                            class="risk-badge"
+                        >
+                            Risk —
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- METRICS -->
+
+                    <div class="metrics">
+
+
+                        <div class="metric">
+
+                            <span>
+                                AI Confidence
+                            </span>
+
+                            <strong id="confidenceValue">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="metric">
+
+                            <span>
+                                Report Date
+                            </span>
+
+                            <strong id="reportDate">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CONFIDENCE -->
+
+                    <div class="confidence-track">
+
+                        <div
+                            id="confidenceBar"
+                            class="confidence-fill">
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="condition-block">
+
+                        <h3>
+                            About This Condition
+                        </h3>
+
+                        <p id="description">
+                            —
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- SUMMARY CARD -->
+
+                <aside class="glass-card summary-card">
+
+                    <span class="section-label">
+                        ASSESSMENT SUMMARY
+                    </span>
+
+
+                    <div class="summary-ring">
+
+                        <div>
+
+                            <strong id="ringConfidence">
+                                0%
+                            </strong>
+
+                            <span>
+                                confidence
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <p id="summaryText">
+                        Your latest assessment is shown here.
+                    </p>
+
+                </aside>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 REPORT DETAILS
+            ================================================== -->
+
+            <div class="details-grid">
+
+
+                <!-- SELECTED SYMPTOMS -->
+
+                <article class="glass-card detail-card">
+
+                    <h3>
+                        Selected Symptoms
+                    </h3>
+
+                    <div
+                        id="selectedSymptoms"
+                        class="tag-list"
+                    >
+
+                        <span class="muted">
+                            —
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- RELATED SYMPTOMS -->
+
+                <article class="glass-card detail-card">
+
+                    <h3>
+                        Related Symptoms
+                    </h3>
+
+                    <div
+                        id="relatedSymptoms"
+                        class="tag-list"
+                    >
+
+                        <span class="muted">
+                            —
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- OTHER CONDITIONS -->
+
+                <article class="glass-card detail-card">
+
+                    <h3>
+                        Other Possible Conditions
+                    </h3>
+
+                    <div
+                        id="otherConditions"
+                        class="candidate-list"
+                    >
+
+                        <span class="muted">
+                            —
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- PRECAUTIONS -->
+
+                <article class="glass-card detail-card">
+
+                    <h3>
+                        Precautions
+                    </h3>
+
+                    <ul
+                        id="precautions"
+                        class="clean-list"
+                    >
+
+                        <li>
+                            —
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+
+                <!-- MEDICATION -->
+
+                <article class="glass-card detail-card">
+
+                    <h3>
+                        Medication Information
+                    </h3>
+
+                    <ul
+                        id="medications"
+                        class="clean-list"
+                    >
+
+                        <li>
+                            —
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+
+                <!-- DIET -->
+
+                <article class="glass-card detail-card">
+
+                    <h3>
+                        Diet Guidance
+                    </h3>
+
+                    <ul
+                        id="diet"
+                        class="clean-list"
+                    >
+
+                        <li>
+                            —
+                        </li>
+
+                    </ul>
+
+                </article>
+
+
+
+                <!-- WORKOUT -->
+
+                <article class="glass-card detail-card">
+
+                    <h3>
+                        Workout &amp; Lifestyle
+                    </h3>
+
+                    <ul
+                        id="workout"
+                        class="clean-list"
+                    >
+
+                        <li>
+                            —
+                        </li>
+
+                    </ul>
+
+                </article>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MEDICAL WARNING
+            ================================================== -->
+
+            <div class="warning-box">
+
+                <strong>
+                    Medical Warning
+                </strong>
+
+                <p>
+                    This AI prediction is for informational and
+                    educational purposes only and does not replace
+                    professional medical diagnosis, examination,
+                    or treatment.
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 REPORT ACTIONS
+            ================================================== -->
+
+            <div class="action-row">
+
+
+                <!-- NEW DIAGNOSIS -->
+
+                <button
+                    class="primary-btn"
+                    id="newDiagnosisBtn"
+                    type="button"
+                    style="
+                        padding:15px 28px;
+                        font-weight:700;
+                        box-shadow:
+                            0 10px 30px rgba(0,190,255,0.30);
+                    "
+                >
+                    ✦ Start New Diagnosis
+                </button>
+
+
+                <!-- REFRESH -->
+
+                <button
+                    class="secondary-btn"
+                    id="refreshBtn"
+                    type="button"
+                >
+                    Refresh Report
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             ERROR STATE
+        ====================================================== -->
+
+        <div
+            id="errorState"
+            class="glass-card state-card hidden"
+        >
+
+            <div class="empty-icon error">
+                !
+            </div>
+
+
+            <div class="state-content">
+
+                <h2>
+                    Unable to load report
+                </h2>
+
+                <p id="errorMessage">
+                    Something went wrong while loading your latest report.
+                </p>
+
+
+                <button
+                    class="primary-btn"
+                    id="retryBtn"
+                    type="button"
+                >
+                    Try Again
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================================================
+         TOAST
+    ========================================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+        role="status"
+        aria-live="polite">
+    </div>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+   <script src="js/dna.js"></script>
+<script src="prediction.js"></script>
+
+    <script>
+
+        /*
+         * =====================================================
+         * START DIAGNOSIS
+         * =====================================================
+         *
+         * Every Start Diagnosis button goes directly to:
+         *
+         * diagnosis.html
+         *
+         */
+
+        function goToDiagnosis() {
+            window.location.href = "diagnosis.html";
+        }
+
+
+        /*
+         * TOP START DIAGNOSIS BUTTON
+         */
+
+        const topStartDiagnosisBtn =
+            document.getElementById("topStartDiagnosisBtn");
+
+        if (topStartDiagnosisBtn) {
+
+            topStartDiagnosisBtn.addEventListener(
+                "click",
+                goToDiagnosis
+            );
+
+        }
+
+
+        /*
+         * EMPTY STATE START DIAGNOSIS BUTTON
+         */
+
+        const startDiagnosisBtn =
+            document.getElementById("startDiagnosisBtn");
+
+        if (startDiagnosisBtn) {
+
+            startDiagnosisBtn.addEventListener(
+                "click",
+                goToDiagnosis
+            );
+
+        }
+
+
+        /*
+         * NEW DIAGNOSIS BUTTON
+         */
+
+        const newDiagnosisBtn =
+            document.getElementById("newDiagnosisBtn");
+
+        if (newDiagnosisBtn) {
+
+            newDiagnosisBtn.addEventListener(
+                "click",
+                goToDiagnosis
+            );
+
+        }
+
+
+        /*
+         * =====================================================
+         * LOGOUT
+         * =====================================================
+         *
+         * Remove current user and return to login page.
+         */
+
+        const logoutBtn =
+            document.getElementById("logoutBtn");
+
+        if (logoutBtn) {
+
+            logoutBtn.addEventListener(
+                "click",
+                function () {
+
+                    localStorage.removeItem("currentUser");
+
+                    window.location.href = "login.html";
+
+                }
+            );
+
+        }
+
+
+        /*
+         * =====================================================
+         * MOBILE MENU
+         * =====================================================
+         */
+
+        const mobileMenu =
+            document.getElementById("mobileMenu");
+
+        const mainNav =
+            document.getElementById("mainNav");
+
+
+        if (mobileMenu && mainNav) {
+
+            mobileMenu.addEventListener(
+                "click",
+                function () {
+
+                    const isOpen =
+                        mainNav.classList.toggle("open");
+
+                    mobileMenu.setAttribute(
+                        "aria-expanded",
+                        isOpen ? "true" : "false"
+                    );
+
+                }
+            );
+
+        }
+
+
+        /*
+         * =====================================================
+         * ACCOUNT NAME
+         * =====================================================
+         */
+
+        const accountName =
+            document.getElementById("accountName");
+
+
+        try {
+
+            const currentUser =
+                JSON.parse(
+                    localStorage.getItem("currentUser")
+                );
+
+
+            if (currentUser && accountName) {
+
+                accountName.textContent =
+                    currentUser.name ||
+                    currentUser.username ||
+                    "HealthAI User";
+
+            }
+
+        } catch (error) {
+
+            if (accountName) {
+
+                accountName.textContent =
+                    "HealthAI User";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

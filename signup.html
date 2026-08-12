@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HealthAI | Sign Up</title>
+
+
+    <!-- Google Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+
+    <!-- HealthAI CSS -->
+    <link
+        rel="stylesheet"
+        href="./auth.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         ANIMATED BACKGROUND
+    ========================================================== -->
+
+    <canvas id="dnaCanvas"></canvas>
+
+    <div class="overlay"></div>
+
+    <div class="glow glow1"></div>
+
+    <div class="glow glow2"></div>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+
+                <i class="fa-solid fa-dna"></i>
+
+                <span>
+                    HealthAI
+                </span>
+
+            </div>
+
+
+            <a
+                href="./login.html"
+                class="back-btn"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back
+
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================================================
+         SIGNUP SECTION
+    ========================================================== -->
+
+    <section class="logout-section">
+
+        <div class="logout-card">
+
+            <h1>
+                Create Account
+            </h1>
+
+
+            <p>
+                Join HealthAI AI Health System
+            </p>
+
+
+            <form id="signupForm">
+
+
+                <!-- =================================================
+                     FULL NAME
+                ================================================== -->
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Full Name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =================================================
+                     EMAIL
+                ================================================== -->
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Email Address"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =================================================
+                     PASSWORD
+                ================================================== -->
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =================================================
+                     CREATE ACCOUNT
+                ================================================== -->
+
+                <button
+                    type="submit"
+                    id="signupButton"
+                >
+                    Create Account
+                </button>
+
+
+                <!-- =================================================
+                     DIVIDER
+                ================================================== -->
+
+                <div class="divider">
+                    OR
+                </div>
+
+
+                <!-- =================================================
+                     LOGIN
+                ================================================== -->
+
+                <a
+                    href="./login.html"
+                    class="signup-btn"
+                >
+                    Already have an account? Login
+                </a>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         DNA ANIMATION
+    ========================================================== -->
+
+    <script src="./js/dna.js"></script>
+
+
+    <!-- =========================================================
+         SIGNUP LOGIC
+    ========================================================== -->
+
+    <script src="./js/signup.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+{
+  "input_rows": 96088,
+  "input_features": 230,
+  "input_classes": 100,
+  "null_values": 0,
+  "blank_string_columns": {},
+  "exact_duplicate_rows": 0,
+  "non_binary_symptom_values": 0,
+  "constant_features": [],
+  "ambiguous_symptom_profiles_removed": 4046,
+  "rows_removed_for_ambiguous_profiles": 8924,
+  "training_rows": 87164,
+  "training_classes": 100,
+  "validation": {
+    "split": "stratified 80/20 split after removing ambiguous profiles",
+    "random_state": 42,
+    "accuracy": 0.907188,
+    "macro_f1": 0.897674,
+    "test_rows": 17433
+  }
+}
