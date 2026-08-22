@@ -5,7 +5,7 @@ This `README.md` is intended for developers, contributors, and teammates to quic
 
 ---
 
-## 🏗️ Codebase Structure & Architecture
+## 🏗️ Codebase Structure & Architecture 
 
 The project is divided into several main components. Here is exactly how each part works:
 
