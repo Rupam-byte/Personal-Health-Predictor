@@ -1,5 +1,4 @@
 # Personalized Healthcare Predictor 🏥🤖
-
 Welcome to the **Personalized Healthcare Predictor** repository! This project leverages advanced Artificial Intelligence and Machine Learning algorithms to predict potential diseases based on a patient's symptoms, vitals, and history. It also features a robust recommendation system for medications and clinical paths.
 
 This `README.md` is intended for developers, contributors, and teammates to quickly understand how the codebase is structured and how to run it locally.
